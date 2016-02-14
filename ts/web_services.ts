@@ -8,6 +8,7 @@
 module WebServices {
 
   declare var XMLHttpRequest:any;
+  declare var require:any;
 
   export class XHR {
     constructor() {

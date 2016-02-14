@@ -50,6 +50,20 @@ module.exports = function(grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+
+    //  Documentation generation
+    // ------------------------------------------------------------------------
+    typedoc: {
+      build: {
+        options: {
+          module: 'amd',
+          target: 'es3',
+          out: 'docs/',
+          name: 'js-webservices'
+        },
+        src: 'ts/*.ts'
+      }
     }
   });
 
@@ -59,6 +73,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-typedoc');
 
   grunt.registerTask('default', [/*'ts', */ 'concat', 'uglify']);
 };

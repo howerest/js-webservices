@@ -1,0 +1,35 @@
+{
+	"tags":
+	{
+		"allowUnknownTags" : true
+	},
+	"plugins":[
+		 "plugins/markdown"
+		,"/usr/local/lib/node_modules/tsdoc/template/plugins/TSDoc.js"
+	],
+	"opts":
+	{
+		"template"	:"/usr/local/lib/node_modules/tsdoc/template",
+		"recurse"	: "true"
+	},
+	"templates" : {
+		"cleverLinks"     : false,
+		"monospaceLinks"  : false
+	},
+	"source":
+	{
+		"includePattern": "(\\.d)?\\.ts$"
+	},
+	"markdown"  : {
+		"parser"   : "gfm",
+		"hardwrap" : true
+	},
+	"tsdoc":{
+		"source"		:"./ts",
+		"destination"	:"./docs",
+		"systemName"	: "js-webservices",
+		"copyright"		: "js-webservices 0.5.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed",
+		"outputSourceFiles" : false,
+		"commentsOnly": true
+	}
+}
