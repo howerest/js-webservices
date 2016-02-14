@@ -1,5 +1,36 @@
 var WebServices;
 (function (WebServices) {
+    var XHR = (function () {
+        function XHR() {
+            try {
+                return new XMLHttpRequest();
+            }
+            catch (e) { }
+            try {
+                return new ActiveXObject("Msxml3.XMLHTTP");
+            }
+            catch (e) { }
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+            }
+            catch (e) { }
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            }
+            catch (e) { }
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) { }
+            try {
+                return new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            catch (e) { }
+            return null;
+        }
+        return XHR;
+    })();
+    WebServices.XHR = XHR;
     var HttpHeader = (function () {
         function HttpHeader(header) {
             this.name = Object.keys(header)[0];
@@ -15,15 +46,7 @@ var WebServices;
             var _this = this;
             if (Util.EnvChecker.isBrowser()) {
                 console.log('Im in a browser');
-                if (typeof (XMLHttpRequest) !== 'undefined') {
-                    this.client = new XMLHttpRequest();
-                }
-                else if (typeof (XDomainRequest) !== 'undefined') {
-                    this.client = new XDomainRequest();
-                }
-                else {
-                    return;
-                }
+                this.client = new XHR();
             }
             else if (Util.EnvChecker.isNode()) {
                 console.log('Im in Node.js');

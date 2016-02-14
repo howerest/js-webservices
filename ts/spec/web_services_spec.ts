@@ -1,6 +1,24 @@
 /// <reference path="../../typings/jasmine/jasmine.d.ts" />
+/// <reference path="../../typings/jasmine-ajax/jasmine-ajax.d.ts" />
+/// <reference path="../web_services.ts" />
+
 
 describe('HttpRequest', () => {
+  beforeEach(() => {
+    jasmine.Ajax.install();
+
+    jasmine.Ajax.stubRequest('http://api.mydomain.com/items/1').andReturn({
+      status: 200,
+      contentType: 'text/xml;charset=UTF-8',
+      responseText: "{ id: 1000, name: 'An age group', items: [{ age: 2 }, { older_than: 68 }, { older_than: 10, younger_than: 19 }] }"
+    });
+  });
+
+  afterEach(function() {
+    jasmine.Ajax.uninstall();
+  });
+
+
   describe('.constructor', () => {
     describe("when XMLHttpRequest doesn't exist", () => {
       xit('it should require a Node.js XMLHttpRequest implementation', () => {
@@ -12,9 +30,25 @@ describe('HttpRequest', () => {
 
     });
 
-    describe("when XMLHttpRequest doesn't exist", () => {
-      xit('shoud make a request to the endpoint', () => {
+    describe("when the XMLHttpRequest api exist", () => {
+      var httpQueryOpts;
 
+      beforeEach(() => {
+        httpQueryOpts = {
+          httpMethod: "GET",
+          endpoint:   'http://api.mydomain.com/items/1',
+          qsParams:   {},
+          headers:    [],
+          data:       {}
+        };
+      })
+      it('shoud make a request to the endpoint', () => {
+        var doneFn = jasmine.createSpy("success");
+        var query = new WebServices.HttpQuery(httpQueryOpts);
+        var httpRequest = new WebServices.HttpRequest(query);
+        expect(jasmine.Ajax.requests.mostRecent().url).toBe('http://api.mydomain.com/items/1');
+        expect(jasmine.Ajax.requests.mostRecent().status).toBe(200);
+        expect(httpRequest.promise).not.toBe(undefined);
       });
       xit('shoud use the http verb specified', () => {
 
@@ -29,8 +63,11 @@ describe('HttpRequest', () => {
 
       });
 
-      xit('should return a Promise', () => {
-
+      it('should return a Promise', () => {
+        var doneFn = jasmine.createSpy("success");
+        var query = new WebServices.HttpQuery(httpQueryOpts);
+        var httpRequest = new WebServices.HttpRequest(query);
+        expect(httpRequest.promise).not.toBe(undefined);
       });
     });
   });

@@ -4,9 +4,22 @@
 /*
  * Implements the web services functionality
  */
+
 module WebServices {
 
-  declare const XDomainRequest: any;
+  declare var XMLHttpRequest:any;
+
+  export class XHR {
+    constructor() {
+      try { return new XMLHttpRequest(); } catch(e) {}
+      try { return new ActiveXObject("Msxml3.XMLHTTP"); } catch(e) {}
+      try { return new ActiveXObject("Msxml2.XMLHTTP.6.0"); } catch(e) {}
+      try { return new ActiveXObject("Msxml2.XMLHTTP.3.0"); } catch(e) {}
+      try { return new ActiveXObject("Msxml2.XMLHTTP"); } catch(e) {}
+      try { return new ActiveXObject("Microsoft.XMLHTTP"); } catch(e) {}
+      return null;
+    }
+  }
 
   /*!
    * Handles a Http Header
@@ -36,13 +49,7 @@ module WebServices {
 
       if (Util.EnvChecker.isBrowser()) {
         console.log('Im in a browser');
-        if (typeof(XMLHttpRequest) !== 'undefined') {
-          this.client = new XMLHttpRequest();
-        } else if (typeof(XDomainRequest) !== 'undefined') {
-          this.client = new XDomainRequest();
-        } else {
-          return;
-        }
+        this.client = new XHR();
       } else if (Util.EnvChecker.isNode()){
         console.log('Im in Node.js');
         var XMLHttpRequest = require('xhr2');

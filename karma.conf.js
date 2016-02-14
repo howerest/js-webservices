@@ -14,7 +14,8 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      // { pattern: 'spec/lib/mock-ajax.js', included: true },
+      { pattern: 'node_modules/jasmine-ajax/lib/mock-ajax.js', included: true },
+      { pattern: 'node_modules/es6-promise/dist/es6-promise.min.js', included: true },
 
       { pattern: 'js/util.js', included: true },
       { pattern: 'js/web_services.js', included: true },
