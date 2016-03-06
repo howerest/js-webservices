@@ -65,13 +65,13 @@ var WebServices;
                 _this.client.onreadystatechange = function (e) {
                     if (e && e.target['readyState'] == 4) {
                         if (e.target['status'] == 200) {
-                            _this.response = new HttpResponse(this.query.endpoint, {}, e.target['responseText']);
+                            _this.response = new HttpResponse(_this.query.endpoint, {}, e.target['responseText']);
                             resolve(_this.response);
                         }
-                    }
-                    else {
-                        _this.promise = Promise.reject(false);
-                        resolve({});
+                        else {
+                            _this.promise = Promise.reject(false);
+                            resolve({});
+                        }
                     }
                 };
             });
@@ -83,7 +83,7 @@ var WebServices;
     var HttpResponse = (function () {
         function HttpResponse(baseHost, headers, data, parseJSON) {
             if (parseJSON === void 0) { parseJSON = true; }
-            this.data = Object.keys(data).length > 0 ? JSON.parse(data) : {};
+            this.data = parseJSON ? JSON.parse(data) : data;
         }
         return HttpResponse;
     })();
