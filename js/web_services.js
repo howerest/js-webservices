@@ -62,10 +62,10 @@ var WebServices;
             }
             this.client.setRequestHeader('Accept', 'application/json');
             this.promise = new Promise(function (resolve, reject) {
-                this.client.onreadystatechange = function (e) {
+                _this.client.onreadystatechange = function (e) {
                     if (e && e.target['readyState'] == 4) {
                         if (e.target['status'] == 200) {
-                            _this.response = new HttpResponse(this.endpoint, {}, e.target['responseText']);
+                            _this.response = new HttpResponse(this.query.endpoint, {}, e.target['responseText']);
                             resolve(_this.response);
                         }
                     }

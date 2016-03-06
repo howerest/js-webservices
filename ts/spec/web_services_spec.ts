@@ -43,12 +43,13 @@ describe('HttpRequest', () => {
         };
       })
       it('shoud make a request to the endpoint', () => {
-        var doneFn = jasmine.createSpy("success");
+        var doneFn = jasmine.createSpy("onSuccess");
         var query = new WebServices.HttpQuery(httpQueryOpts);
         var httpRequest = new WebServices.HttpRequest(query);
         expect(jasmine.Ajax.requests.mostRecent().url).toBe('http://api.mydomain.com/items/1');
         expect(jasmine.Ajax.requests.mostRecent().status).toBe(200);
         expect(httpRequest.promise).not.toBe(undefined);
+
       });
       xit('shoud use the http verb specified', () => {
 
