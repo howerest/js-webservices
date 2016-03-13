@@ -45,11 +45,9 @@ var WebServices;
             this.query = httpQuery;
             var _this = this, data = null, keys;
             if (Util.EnvChecker.isBrowser()) {
-                console.log('Im in a browser');
                 this.client = new XHR();
             }
             else if (Util.EnvChecker.isNode()) {
-                console.log('Im in Node.js');
                 var XMLHttpRequest = require('xhr2');
                 this.client = new XMLHttpRequest();
             }
