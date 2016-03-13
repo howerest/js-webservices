@@ -46,7 +46,7 @@ module WebServices {
 
     constructor(httpQuery:WebServices.HttpQuery) {
       this.query = httpQuery;
-      var _this = this
+      var _this = this, data = null, keys;
 
       if (Util.EnvChecker.isBrowser()) {
         console.log('Im in a browser');
@@ -66,14 +66,19 @@ module WebServices {
       for (var headerKey in this.query.headers) {
         this.client.setRequestHeader(headerKey, this.query.headers[headerKey]);
       }
-      this.client.setRequestHeader('Accept', 'application/json');
+      if (!this.query.headers['Accept']) {
+        this.client.setRequestHeader('Accept', 'application/json');
+      }
+      if (!this.query.headers['Content-Type']) {
+        this.client.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      }
       // Promise
       this.promise = new Promise(function(resolve, reject) {
         // Resolve a HttpResponse when success
         _this.client.onreadystatechange = function(e) {
           if (e && e.target['readyState'] == 4) {
-            if (e.target['status'] == 200) {
-              _this.response = new HttpResponse(_this.query.endpoint, {}, e.target['responseText']);
+            if (e.target['status'] == 200 || e.target['status'] == 204) {
+              _this.response = new HttpResponse(_this.query.endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
               resolve(_this.response);
             } else {
               _this.promise = Promise.reject(false);
@@ -83,7 +88,14 @@ module WebServices {
         };
       });
 
-      this.client.send(this.query.data ? JSON.stringify(this.query.data) : null);
+      if (typeof(this.query.data) === "object") {
+        keys = Object.keys(this.query.data);
+        if (keys.length > 0) {
+          data = JSON.stringify(this.query.data);
+        }
+      }
+
+      this.client.send(data);
     }
   }
 
@@ -94,7 +106,15 @@ module WebServices {
   export class HttpResponse {
     data:Object
     constructor(baseHost: String, headers: Object, data: string, parseJSON: boolean = true) {
-      this.data = parseJSON ? JSON.parse(data) : data;
+      if (data && parseJSON) {
+        try {
+          this.data = JSON.parse(data);
+        } catch(e) {
+          console.log('sdkzer> error when parsing JSON response. The received data is malformed');
+        }
+      } else {
+        this.data = data;
+      }
     }
   }
 

@@ -1,6 +1,6 @@
 {
 	"name": "js-webservices",
-	"version": "0.5.0",
+	"version": "0.5.3",
 	"description": "Implements a low-level simple cross js-environment API to deal with http services",
 	"bugs": {},
 	"licenses": [
