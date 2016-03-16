@@ -55,8 +55,8 @@ var WebServices;
                 return;
             }
             this.client.open(this.query.httpMethod, this.query.endpoint);
-            for (var header in this.query.headers) {
-                this.client.setRequestHeader(header.name, header.value);
+            for (var i = 0; i < this.query['headers'].length; i++) {
+                this.client.setRequestHeader(this.query.headers[i].name, this.query.headers[i].value);
             }
             if (!this.query.headers['Accept']) {
                 this.client.setRequestHeader('Accept', 'application/json');
