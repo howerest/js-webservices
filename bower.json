@@ -17,7 +17,7 @@
     "http header",
     "http response",
     "http query",
-    "frontend"
+    "frontend",
     "restful http",
     "rest",
     "restful",
@@ -31,7 +31,7 @@
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
   }],
   "homepage": "www.howerest.com/en/labs",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",

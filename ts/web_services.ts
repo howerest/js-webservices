@@ -61,8 +61,8 @@ module WebServices {
       this.client.open(this.query.httpMethod, this.query.endpoint);
 
       // Set headers
-      for (var headerKey in this.query.headers) {
-        this.client.setRequestHeader(headerKey, this.query.headers[headerKey]);
+      for (var header in this.query.headers) {
+        this.client.setRequestHeader(header.name, header.value);
       }
       if (!this.query.headers['Accept']) {
         this.client.setRequestHeader('Accept', 'application/json');
