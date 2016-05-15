@@ -151,4 +151,28 @@ var WebServices;
         return HttpQuery;
     })();
     WebServices.HttpQuery = HttpQuery;
+    var Merger = (function () {
+        function Merger() {
+        }
+        Merger.mergeHttpQueries = function (httpQueries) {
+            var finalHttpQuery = new WebServices.HttpQuery({
+                endpoint: null,
+                httpMethod: null,
+                qsParams: {},
+                headers: [],
+                data: {}
+            });
+            for (var i = 0; i < httpQueries.length; i++) {
+                var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
+                for (var i2 = 0; i2 < queryAttrs.length; i2++) {
+                    if (httpQueries[i][queryAttrs[i2]] !== null) {
+                        finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];
+                    }
+                }
+            }
+            return finalHttpQuery;
+        };
+        return Merger;
+    })();
+    WebServices.Merger = Merger;
 })(WebServices || (WebServices = {}));

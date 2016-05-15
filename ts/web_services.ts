@@ -207,6 +207,36 @@ module WebServices {
   }
 
 
+  /*!
+   * Merges data
+   */
+  export class Merger {
+    /*
+     *  Merges a list of HttpQueries into a single HttpQuery
+     */
+    public static mergeHttpQueries(httpQueries: Array<HttpQuery>) : WebServices.HttpQuery {
+      var finalHttpQuery : WebServices.HttpQuery = new WebServices.HttpQuery({
+        endpoint: null,
+        httpMethod: null,
+        qsParams: {},
+        headers: [],
+        data: {},
+      });
+
+      for (let i = 0; i < httpQueries.length; i++) {
+        var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
+        for (let i2 = 0; i2 < queryAttrs.length; i2++) {
+            if (httpQueries[i][queryAttrs[i2]] !== null) {
+              finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];
+            }
+        }
+      }
+
+      return finalHttpQuery;
+    }
+  }
+
+
   export interface IHttpQuerySettings {
     endpoint?: string
     httpMethod?: string
