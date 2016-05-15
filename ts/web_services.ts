@@ -208,10 +208,10 @@ module WebServices {
 
 
   export interface IHttpQuerySettings {
-    endpoint: string
-    httpMethod: string
-    qsParams: Object
-    headers: WebServices.HttpHeader[]
-    data: Object
+    endpoint?: string
+    httpMethod?: string
+    qsParams?: Object
+    headers?: WebServices.HttpHeader[]
+    data?: Object
   }
 }
