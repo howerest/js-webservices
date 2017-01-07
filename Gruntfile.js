@@ -35,7 +35,7 @@ module.exports = function(grunt) {
         compress: {
           drop_console: true
         },
-        banner: "/*! js-webservices 0.5.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */\n"
+        banner: "/*! js-webservices 0.5.5 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */\n"
       },
       release: {
         files: {
@@ -49,20 +49,6 @@ module.exports = function(grunt) {
     karma: {
       unit: {
         configFile: 'karma.conf.js'
-      }
-    },
-
-    //  Documentation generation
-    // ------------------------------------------------------------------------
-    typedoc: {
-      build: {
-        options: {
-          module: 'amd',
-          target: 'es3',
-          out: 'docs/',
-          name: 'js-webservices'
-        },
-        src: 'ts/*.ts'
       }
     }
   });

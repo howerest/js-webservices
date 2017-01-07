@@ -28,7 +28,7 @@
 		"source"		:"./ts",
 		"destination"	:"./docs",
 		"systemName"	: "js-webservices",
-		"copyright"		: "js-webservices 0.5.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed",
+		"copyright"		: "js-webservices 0.5.5 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed",
 		"outputSourceFiles" : false,
 		"commentsOnly": true
 	}

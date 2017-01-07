@@ -1,9 +1,11 @@
-/// <reference path='../typings/es6-promise/es6-promise.d.ts' />
-/// <reference path='./util.ts' />
+import { Promise } from "es6-promise";
+import { Util } from "./util";
 
 /*
  * Implements the web services functionality
  */
+declare var ActiveXObject: (type: string) => void;
+declare var xhr2 : () => void;
 
 export module WebServices {
 
@@ -51,7 +53,7 @@ export module WebServices {
       if (Util.EnvChecker.isBrowser()) {
         this.client = new XHR();
       } else if (Util.EnvChecker.isNode()){
-        var XMLHttpRequest = require('xhr2');
+        var XMLHttpRequest = xhr2;
         this.client = new XMLHttpRequest();
       } else {
         return;
@@ -235,7 +237,6 @@ export module WebServices {
       return finalHttpQuery;
     }
   }
-
 
   export interface IHttpQuerySettings {
     endpoint?: string

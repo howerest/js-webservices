@@ -1,4 +1,4 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "es6-promise", "./util"], function (require, exports, es6_promise_1, util_1) {
     "use strict";
     var WebServices;
     (function (WebServices) {
@@ -46,11 +46,11 @@ define(["require", "exports"], function (require, exports) {
                 this.response = null;
                 this.query = httpQuery;
                 var _this = this, data = null, keys;
-                if (Util.EnvChecker.isBrowser()) {
+                if (util_1.Util.EnvChecker.isBrowser()) {
                     this.client = new XHR();
                 }
-                else if (Util.EnvChecker.isNode()) {
-                    var XMLHttpRequest = require('xhr2');
+                else if (util_1.Util.EnvChecker.isNode()) {
+                    var XMLHttpRequest = xhr2;
                     this.client = new XMLHttpRequest();
                 }
                 else {
@@ -66,7 +66,7 @@ define(["require", "exports"], function (require, exports) {
                 if (!this.query.headers['Content-Type']) {
                     this.client.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
                 }
-                this.promise = new Promise(function (resolve, reject) {
+                this.promise = new es6_promise_1.Promise(function (resolve, reject) {
                     _this.client.onreadystatechange = function (e) {
                         if (e && e.target['readyState'] == 4) {
                             if (e.target['status'] == 200 || e.target['status'] == 204) {
@@ -74,7 +74,7 @@ define(["require", "exports"], function (require, exports) {
                                 resolve(_this.response);
                             }
                             else {
-                                _this.promise = Promise.reject(false);
+                                _this.promise = es6_promise_1.Promise.reject(false);
                                 resolve({});
                             }
                         }
