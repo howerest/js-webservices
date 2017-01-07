@@ -5,7 +5,7 @@
  * Implements the web services functionality
  */
 
-module WebServices {
+export module WebServices {
 
   declare var XMLHttpRequest:any;
   declare var require:any;

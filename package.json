@@ -23,6 +23,7 @@
 			"email": "davidvalin@howerest.com"
 		}
 	],
+	"main": "ts/web_services.ts",
 	"dependencies": {
 		"es6-promise": "^3.0.2",
 		"grunt-contrib-watch": "^0.6.1",
