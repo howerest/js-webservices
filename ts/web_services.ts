@@ -228,7 +228,7 @@ export module WebServices {
       for (let i = 0; i < httpQueries.length; i++) {
         var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
         for (let i2 = 0; i2 < queryAttrs.length; i2++) {
-            if (httpQueries[i][queryAttrs[i2]] !== null) {
+            if (typeof (httpQueries[i][queryAttrs[i2]]) !== "undefined") {
               finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];
             }
         }

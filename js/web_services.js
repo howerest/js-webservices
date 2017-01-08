@@ -167,7 +167,7 @@ define(["require", "exports", "es6-promise", "./util"], function (require, expor
                 for (var i = 0; i < httpQueries.length; i++) {
                     var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
                     for (var i2 = 0; i2 < queryAttrs.length; i2++) {
-                        if (httpQueries[i][queryAttrs[i2]] !== null) {
+                        if (typeof (httpQueries[i][queryAttrs[i2]]) !== "undefined") {
                             finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];
                         }
                     }
