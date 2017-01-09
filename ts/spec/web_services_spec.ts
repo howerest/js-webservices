@@ -2,6 +2,7 @@
 /// <reference path="../../typings/jasmine-ajax/jasmine-ajax.d.ts" />
 /// <reference path="../web_services.ts" />
 
+import { WebServices } from "../web_services";
 
 describe('HttpRequest', () => {
   beforeEach(() => {
