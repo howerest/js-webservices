@@ -57,5 +57,5 @@
 		"utf8": "^2.1.2",
 		"xhr": "^2.3.3"
 	},
-	"typings": "built/web_services.d.js"
+	"typings": "built/web_services.d.ts"
 }
