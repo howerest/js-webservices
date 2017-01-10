@@ -1,3 +1,5 @@
+/* js-webservices 0.1.0-rc.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+
 export module Util {
   declare var global:any;
   declare var process:any;
