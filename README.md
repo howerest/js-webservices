@@ -2,19 +2,19 @@
 
 ### Currently:
 
-#### HttpRequest
+1. HttpRequest
 Handles a request and provides a HttpResponse
 
-#### HttpResponse
+2. HttpResponse
 Operates with the Http Response
 
-#### HttpQuery
+3. HttpQuery
 Helps to build an http query (query string)
 
-#### HttpHeader
+4. HttpHeader
 Handles an Http Header
 
-#### XHR
+5. XHR
 Generic cross browser http request API
 
 # Full API docs

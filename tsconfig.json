@@ -10,8 +10,11 @@
     "outDir": "./built"
   },
   "filesGlob": [
-    "./ts/**/*.ts",
-    "!./node_modules/**/*.ts"
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "typings",
+    "node_modules"
   ],
   "atom": {
     "rewriteTsconfig": false
