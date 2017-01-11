@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.5 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Promise } from "es6-promise";
 import { Util } from "./util";
@@ -48,6 +48,7 @@ export module WebServices {
     constructor(httpQuery:WebServices.HttpQuery) {
       this.query = httpQuery;
       let _this = this, data = null, keys;
+      let endpoint = this.query.endpoint;
 
       if (Util.EnvChecker.isBrowser()) {
         this.client = new XHR();
@@ -58,8 +59,20 @@ export module WebServices {
         return;
       }
 
+      // Add query string to url
+      if (Object.keys(this.query.qsParams).length > 0) {
+        endpoint += '?';
+        let i=0;
+        let keys = Object.keys(this.query.qsParams);
+        for(let key of keys) {
+          if (i > 0) { endpoint += '&'; }
+          endpoint += key+"="+this.query.qsParams[key];
+          i++;
+        }
+      }
+
       // Set method & url
-      this.client.open(this.query.httpMethod, this.query.endpoint);
+      this.client.open(this.query.httpMethod, endpoint);
 
       // Set headers
       for (let i = 0; i < this.query['headers'].length; i++) {
@@ -77,7 +90,7 @@ export module WebServices {
         _this.client.onreadystatechange = function(e) {
           if (e && e.target['readyState'] == 4) {
             if (e.target['status'] == 200 || e.target['status'] == 204) {
-              _this.response = new HttpResponse(_this.query.endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
+              _this.response = new HttpResponse(endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
               resolve(_this.response);
             } else {
               _this.promise = Promise.reject(false);

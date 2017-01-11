@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.5 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
 var es6_promise_1 = require("es6-promise");
 var util_1 = require("./util");
@@ -48,6 +48,7 @@ var WebServices;
             this.response = null;
             this.query = httpQuery;
             var _this = this, data = null, keys;
+            var endpoint = this.query.endpoint;
             if (util_1.Util.EnvChecker.isBrowser()) {
                 this.client = new XHR();
             }
@@ -58,7 +59,20 @@ var WebServices;
             else {
                 return;
             }
-            this.client.open(this.query.httpMethod, this.query.endpoint);
+            if (Object.keys(this.query.qsParams).length > 0) {
+                endpoint += '?';
+                var i = 0;
+                var keys_1 = Object.keys(this.query.qsParams);
+                for (var _i = 0, keys_2 = keys_1; _i < keys_2.length; _i++) {
+                    var key = keys_2[_i];
+                    if (i > 0) {
+                        endpoint += '&';
+                    }
+                    endpoint += key + "=" + this.query.qsParams[key];
+                    i++;
+                }
+            }
+            this.client.open(this.query.httpMethod, endpoint);
             for (var i = 0; i < this.query['headers'].length; i++) {
                 this.client.setRequestHeader(this.query.headers[i].name, this.query.headers[i].value);
             }
@@ -72,7 +86,7 @@ var WebServices;
                 _this.client.onreadystatechange = function (e) {
                     if (e && e.target['readyState'] == 4) {
                         if (e.target['status'] == 200 || e.target['status'] == 204) {
-                            _this.response = new HttpResponse(_this.query.endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
+                            _this.response = new HttpResponse(endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
                             resolve(_this.response);
                         }
                         else {
