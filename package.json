@@ -1,6 +1,6 @@
 {
 	"name": "js-webservices",
-	"version": "0.1.0-rc.6",
+	"version": "0.1.0-rc.7",
 	"description": "Implements a low-level simple cross js-environment API to deal with http services",
 	"bugs": {},
 	"licenses": [
@@ -57,5 +57,10 @@
 		"utf8": "^2.1.2",
 		"xhr": "^2.3.3"
 	},
-	"typings": "built/web_services.d.ts"
+	"typings": "built/web_services.d.ts",
+	"repository": {
+	  "type": "git",
+	  "url": "git://github.com/howerest/js-webservices.git"
+	},
+	"license": "Apache-2.0"
 }
