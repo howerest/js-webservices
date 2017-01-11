@@ -1,15 +1,15 @@
-/*! js-webservices 0.1.0-rc.3 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Promise } from "es6-promise";
 import { Util } from "./util";
 
-declare var ActiveXObject: (type: string) => void;
-declare var xhr2 : () => void;
+declare let ActiveXObject: (type: string) => void;
+declare let xhr2 : () => void;
 
 export module WebServices {
 
-  declare var XMLHttpRequest:any;
-  declare var require:any;
+  declare let XMLHttpRequest:any;
+  declare let require:any;
 
   export class XHR {
     constructor() {
@@ -47,12 +47,12 @@ export module WebServices {
 
     constructor(httpQuery:WebServices.HttpQuery) {
       this.query = httpQuery;
-      var _this = this, data = null, keys;
+      let _this = this, data = null, keys;
 
       if (Util.EnvChecker.isBrowser()) {
         this.client = new XHR();
       } else if (Util.EnvChecker.isNode()){
-        var XMLHttpRequest = xhr2;
+        let XMLHttpRequest = xhr2;
         this.client = new XMLHttpRequest();
       } else {
         return;
@@ -62,7 +62,7 @@ export module WebServices {
       this.client.open(this.query.httpMethod, this.query.endpoint);
 
       // Set headers
-      for (var i = 0; i < this.query['headers'].length; i++) {
+      for (let i = 0; i < this.query['headers'].length; i++) {
         this.client.setRequestHeader(this.query.headers[i].name, this.query.headers[i].value);
       }
       if (!this.query.headers['Accept']) {
@@ -123,7 +123,7 @@ export module WebServices {
    *
    *  Code sample of usage:
    *
-   *    var query = new HttpQuery();
+   *    let query = new HttpQuery();
    *    query.where({ name: "David" });
    *
    *    if (loggedIn()) {
@@ -152,13 +152,13 @@ export module WebServices {
      *  Implements a Http Querier API to modify the query
      *  Query String parameters are right way to query an restful http resource
      */
-    public where(qsParams:Object = this.qsParams) {
+    public where(qsParams:Object = {}) {
 
       // qs:
       // headers:
       // data:
 
-      for (var key in qsParams) {
+      for (let key in qsParams) {
         if (qsParams.hasOwnProperty(key)) {
           this.qsParams[key] = qsParams[key];
         }
@@ -196,10 +196,10 @@ export module WebServices {
      *  Serialize
      */
      private serialize(obj:Object) {
-       var items = [];
+       let items = [];
 
-       for(var key in obj) {
-         var k = key, value = obj[key];
+       for(let key in obj) {
+         let k = key, value = obj[key];
          items.push(typeof(value) === "object" ? this.serialize(value) : encodeURIComponent(key) + "=" + encodeURIComponent(value));
        }
 
@@ -216,7 +216,8 @@ export module WebServices {
      *  Merges a list of HttpQueries into a single HttpQuery
      */
     public static mergeHttpQueries(httpQueries: Array<HttpQuery>) : WebServices.HttpQuery {
-      var finalHttpQuery : WebServices.HttpQuery = new WebServices.HttpQuery({
+      let queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
+      let finalHttpQuery : WebServices.HttpQuery = new WebServices.HttpQuery({
         endpoint: null,
         httpMethod: null,
         qsParams: {},
@@ -225,7 +226,6 @@ export module WebServices {
       });
 
       for (let i = 0; i < httpQueries.length; i++) {
-        var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
         for (let i2 = 0; i2 < queryAttrs.length; i2++) {
             if (typeof (httpQueries[i][queryAttrs[i2]]) !== "undefined") {
               finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];

@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.3 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.4 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
 var es6_promise_1 = require("es6-promise");
 var util_1 = require("./util");
@@ -52,8 +52,8 @@ var WebServices;
                 this.client = new XHR();
             }
             else if (util_1.Util.EnvChecker.isNode()) {
-                var XMLHttpRequest = xhr2;
-                this.client = new XMLHttpRequest();
+                var XMLHttpRequest_1 = xhr2;
+                this.client = new XMLHttpRequest_1();
             }
             else {
                 return;
@@ -124,7 +124,7 @@ var WebServices;
             this.data = querySettings.data;
         }
         HttpQuery.prototype.where = function (qsParams) {
-            if (qsParams === void 0) { qsParams = this.qsParams; }
+            if (qsParams === void 0) { qsParams = {}; }
             for (var key in qsParams) {
                 if (qsParams.hasOwnProperty(key)) {
                     this.qsParams[key] = qsParams[key];
@@ -159,6 +159,7 @@ var WebServices;
         function Merger() {
         }
         Merger.mergeHttpQueries = function (httpQueries) {
+            var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
             var finalHttpQuery = new WebServices.HttpQuery({
                 endpoint: null,
                 httpMethod: null,
@@ -167,7 +168,6 @@ var WebServices;
                 data: {}
             });
             for (var i = 0; i < httpQueries.length; i++) {
-                var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
                 for (var i2 = 0; i2 < queryAttrs.length; i2++) {
                     if (typeof (httpQueries[i][queryAttrs[i2]]) !== "undefined") {
                         finalHttpQuery[queryAttrs[i2]] = httpQueries[i][queryAttrs[i2]];
