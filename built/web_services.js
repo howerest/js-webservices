@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.7 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.8 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
 var es6_promise_1 = require("es6-promise");
 var util_1 = require("./util");
@@ -85,13 +85,12 @@ var WebServices;
             this.promise = new es6_promise_1.Promise(function (resolve, reject) {
                 _this.client.onreadystatechange = function (e) {
                     if (e && e.target['readyState'] == 4) {
-                        if (e.target['status'] == 200 || e.target['status'] == 204) {
+                        if (e.target['status'] == 200 || e.target['status'] == 201 || e.target['status'] == 204) {
                             _this.response = new HttpResponse(endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
                             resolve(_this.response);
                         }
                         else {
-                            _this.promise = es6_promise_1.Promise.reject(false);
-                            resolve({});
+                            reject(false);
                         }
                     }
                 };

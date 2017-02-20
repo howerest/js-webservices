@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.7 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.8 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Promise } from "es6-promise";
 import { Util } from "./util";
@@ -89,12 +89,11 @@ export module WebServices {
         // Resolve a HttpResponse when success
         _this.client.onreadystatechange = function(e) {
           if (e && e.target['readyState'] == 4) {
-            if (e.target['status'] == 200 || e.target['status'] == 204) {
+            if (e.target['status'] == 200 || e.target['status'] == 201 || e.target['status'] == 204) {
               _this.response = new HttpResponse(endpoint, {}, e.target['responseText'] ? e.target['responseText'] : null);
               resolve(_this.response);
             } else {
-              _this.promise = Promise.reject(false);
-              resolve({});
+              reject(false);
             }
           }
         };

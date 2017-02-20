@@ -18,7 +18,7 @@ Handles an Http Header
 Generic cross browser http request API
 
 # Full API docs
-Current 0.1.0-rc.7 (Release candidate) - [Read full API docs](http://howerest.com/js-webservices/modules/_web_services_.webservices.html)
+Current 0.1.0-rc.8 (Release candidate) - [Read full API docs](http://howerest.com/js-webservices/modules/_web_services_.webservices.html)
 
 ### How to import WebServices (TypeScript)
 `import { WebServices } from "js-webservices/ts/web_services"`
