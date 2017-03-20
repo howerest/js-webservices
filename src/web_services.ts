@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.8 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.9 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Promise } from "es6-promise";
 import { Util } from "./util";
@@ -133,16 +133,20 @@ export module WebServices {
   /*
    *  Implements an API to build HTTP queries
    *
-   *  Code sample of usage:
+   *  Code sample:
    *
    *    let query = new HttpQuery();
    *    query.where({ name: "David" });
    *
    *    if (loggedIn()) {
-   *      query.where({ user_id: user.id });
+   *      query.where({ include: ['author'] });
    *    }
    *
-   *    User.fetchAll(query)
+   *    if (filters['category_id']) {
+   *      query.where({ category_id: filters['category_id'].join('|') });
+   *    }
+   *
+   *    Posts.fetchAll(query)
    */
   export class HttpQuery {
     public endpoint:string;

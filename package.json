@@ -1,15 +1,9 @@
 {
 	"name": "js-webservices",
-	"version": "0.1.0-rc.8",
-	"description": "Implements a low-level simple cross js-environment API to deal with http services",
+	"version": "0.1.0-rc.9",
+	"description": "Implements low-level cross js-environment object oriented javascript API to deal with Http Services. Yes! this is the definitive one.",
 	"bugs": {},
 	"license": "Apache-2.0",
-	"licenses": [
-		{
-			"type": "Apache-2.0",
-			"url": "http://www.apache.org/licenses/LICENSE-2.0"
-		}
-	],
 	"contributors": [
 		{
 			"name": "David Valin",
@@ -29,9 +23,7 @@
 		"type": "git",
 		"url": "git://github.com/howerest/js-webservices.git"
 	},
-	"dependencies": {
-		"es6-promise": "4.0.5"
-	},
+	"dependencies": {},
 	"devDependencies": {
 		"grunt": "^1.0.1",
 		"grunt-contrib-concat": "^1.0.1",

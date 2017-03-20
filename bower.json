@@ -1,0 +1,23 @@
+{
+  "name": "js-webservices",
+  "version": "0.1.0-rc.9",
+  "description": "Implements low-level cross js-environment object oriented javascript API to deal with Http Services. Yes! this is the definitive one.",
+  "main": "built/web_services.js",
+  "authors": [
+    {
+			"name": "David Valin",
+			"url": "http://howerest.com/en/labs",
+			"email": "davidvalin@howerest.com"
+		}
+  ],
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/howerest/js-webservices",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ]
+}

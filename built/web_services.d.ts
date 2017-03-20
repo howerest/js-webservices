@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.8 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0-rc.9 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 import { Promise } from "es6-promise";
 export declare module WebServices {
     class XHR {

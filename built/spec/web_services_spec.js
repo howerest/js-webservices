@@ -1,4 +1,5 @@
 "use strict";
+exports.__esModule = true;
 var web_services_1 = require("../web_services");
 describe('HttpRequest', function () {
     beforeEach(function () {

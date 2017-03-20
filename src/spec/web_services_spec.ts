@@ -2,7 +2,7 @@
 /// <reference path="../../typings/jasmine-ajax/jasmine-ajax.d.ts" />
 /// <reference path="../web_services.ts" />
 
-/* js-webservices 0.1.0-rc.8 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/* js-webservices 0.1.0-rc.9 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { WebServices } from "../web_services";
 
@@ -20,7 +20,6 @@ describe('HttpRequest', () => {
   afterEach(function() {
     jasmine.Ajax.uninstall();
   });
-
 
   describe('.constructor', () => {
     describe("when XMLHttpRequest doesn't exist", () => {
@@ -44,7 +43,8 @@ describe('HttpRequest', () => {
           headers:    [],
           data:       {}
         };
-      })
+      });
+
       it('shoud make a request to the endpoint', () => {
         var doneFn = jasmine.createSpy("onSuccess");
         var query = new WebServices.HttpQuery(httpQueryOpts);
@@ -52,17 +52,20 @@ describe('HttpRequest', () => {
         expect(jasmine.Ajax.requests.mostRecent().url).toBe('http://api.mydomain.com/items/1');
         expect(jasmine.Ajax.requests.mostRecent().status).toBe(200);
         expect(httpRequest.promise).not.toBe(undefined);
-
       });
+
       xit('shoud use the http verb specified', () => {
 
       });
+
       xit('shoud set the proper http headers', () => {
 
       });
+
       xit('shoud pass the proper query string', () => {
 
       });
+
       xit('shoud pass the proper data', () => {
 
       });
