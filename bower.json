@@ -1,6 +1,6 @@
 {
   "name": "js-webservices",
-  "version": "0.1.0-rc.9",
+  "version": "0.1.0",
   "description": "Implements low-level cross js-environment object oriented javascript API to deal with Http Services. Yes! this is the definitive one.",
   "main": "built/web_services.js",
   "authors": [

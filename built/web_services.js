@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.0-rc.9 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
 exports.__esModule = true;
 var es6_promise_1 = require("es6-promise");
