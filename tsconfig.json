@@ -1,20 +1,22 @@
 {
-  "version": "1.5.0-alpha",
+  "version": "2.2.2",
   "compilerOptions": {
-    "target": "es3",
+    "target": "ES5",
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": false,
-    "removeComments": true,
+    "removeComments": false,
     "suppressImplicitAnyIndexErrors": true,
-    "outDir": "./built"
+    "outDir": "./built",
+    "sourceMap": true,
+    "moduleResolution": "node"
   },
   "filesGlob": [
-    "./src/**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "typings",
-    "node_modules"
+    "typings/",
+    "node_modules/"
   ],
   "atom": {
     "rewriteTsconfig": false

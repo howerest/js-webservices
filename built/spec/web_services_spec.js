@@ -1,5 +1,6 @@
+/* js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var web_services_1 = require("../web_services");
 describe('HttpRequest', function () {
     beforeEach(function () {
@@ -62,3 +63,4 @@ describe('HttpResponse', function () {
         });
     });
 });
+//# sourceMappingURL=web_services_spec.js.map

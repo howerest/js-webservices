@@ -1,7 +1,6 @@
-/*! js-webservices 0.1.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
-exports.__esModule = true;
-var es6_promise_1 = require("es6-promise");
+Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("./util");
 var WebServices;
 (function (WebServices) {
@@ -36,6 +35,9 @@ var WebServices;
         return XHR;
     }());
     WebServices.XHR = XHR;
+    /*!
+     * Handles a Http Header
+     */
     var HttpHeader = (function () {
         function HttpHeader(header) {
             this.name = Object.keys(header)[0];
@@ -44,6 +46,9 @@ var WebServices;
         return HttpHeader;
     }());
     WebServices.HttpHeader = HttpHeader;
+    /*!
+     * Handles a Http Request
+     */
     var HttpRequest = (function () {
         function HttpRequest(httpQuery) {
             this.response = null;
@@ -60,6 +65,7 @@ var WebServices;
             else {
                 return;
             }
+            // Add query string to url
             if (Object.keys(this.query.qsParams).length > 0) {
                 endpoint += '?';
                 var i = 0;
@@ -73,7 +79,9 @@ var WebServices;
                     i++;
                 }
             }
+            // Set method & url
             this.client.open(this.query.httpMethod, endpoint);
+            // Set headers
             for (var i = 0; i < this.query['headers'].length; i++) {
                 this.client.setRequestHeader(this.query.headers[i].name, this.query.headers[i].value);
             }
@@ -83,7 +91,9 @@ var WebServices;
             if (!this.query.headers['Content-Type']) {
                 this.client.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
             }
-            this.promise = new es6_promise_1.Promise(function (resolve, reject) {
+            // Promise
+            this.promise = new Promise(function (resolve, reject) {
+                // Resolve a HttpResponse when success
                 _this.client.onreadystatechange = function (e) {
                     if (e && e.target['readyState'] == 4) {
                         if (e.target['status'] == 200 || e.target['status'] == 201 || e.target['status'] == 204) {
@@ -107,6 +117,9 @@ var WebServices;
         return HttpRequest;
     }());
     WebServices.HttpRequest = HttpRequest;
+    /*
+     * Handles a Http Response
+     */
     var HttpResponse = (function () {
         function HttpResponse(baseHost, headers, data, parseJSON) {
             if (parseJSON === void 0) { parseJSON = true; }
@@ -125,6 +138,24 @@ var WebServices;
         return HttpResponse;
     }());
     WebServices.HttpResponse = HttpResponse;
+    /*
+     *  Implements an API to build HTTP queries
+     *
+     *  Code sample:
+     *
+     *    let query = new HttpQuery();
+     *    query.where({ name: "David" });
+     *
+     *    if (loggedIn()) {
+     *      query.where({ include: ['author'] });
+     *    }
+     *
+     *    if (filters['category_id']) {
+     *      query.where({ category_id: filters['category_id'].join('|') });
+     *    }
+     *
+     *    Posts.fetchAll(query)
+     */
     var HttpQuery = (function () {
         function HttpQuery(querySettings) {
             this.httpMethod = 'GET';
@@ -137,7 +168,14 @@ var WebServices;
             this.headers = querySettings.headers;
             this.data = querySettings.data;
         }
+        /*!
+         *  Implements a Http Querier API to modify the query
+         *  Query String parameters are right way to query an restful http resource
+         */
         HttpQuery.prototype.where = function (qsParams) {
+            // qs:
+            // headers:
+            // data:
             if (qsParams === void 0) { qsParams = {}; }
             for (var key in qsParams) {
                 if (qsParams.hasOwnProperty(key)) {
@@ -146,18 +184,30 @@ var WebServices;
             }
             return this;
         };
+        /*!
+         *  Sets a list of HttpHeaders for the HttpQuery
+         */
         HttpQuery.prototype.withHeaders = function (headers) {
             if (headers === void 0) { headers = []; }
             this.headers = headers;
         };
+        /*!
+         *  Sets the data for the HttpQuery
+         */
         HttpQuery.prototype.withData = function (data) {
             if (data === void 0) { data = {}; }
             this.data = data;
         };
+        /*
+         *  Returns the HttpQuery query string in string format (URI encoded)
+         */
         HttpQuery.prototype.qsParamsToString = function (qsParams) {
             if (qsParams === void 0) { qsParams = this.qsParams; }
             return this.serialize(qsParams);
         };
+        /*
+         *  Serialize
+         */
         HttpQuery.prototype.serialize = function (obj) {
             var items = [];
             for (var key in obj) {
@@ -169,9 +219,15 @@ var WebServices;
         return HttpQuery;
     }());
     WebServices.HttpQuery = HttpQuery;
+    /*!
+     * Merges data
+     */
     var Merger = (function () {
         function Merger() {
         }
+        /*
+         *  Merges a list of HttpQueries into a single HttpQuery
+         */
         Merger.mergeHttpQueries = function (httpQueries) {
             var queryAttrs = ['httpMethod', 'endpoint', 'headers', 'qsParams', 'data'];
             var finalHttpQuery = new WebServices.HttpQuery({
@@ -179,7 +235,7 @@ var WebServices;
                 httpMethod: null,
                 qsParams: {},
                 headers: [],
-                data: {}
+                data: {},
             });
             for (var i = 0; i < httpQueries.length; i++) {
                 for (var i2 = 0; i2 < queryAttrs.length; i2++) {
@@ -194,3 +250,4 @@ var WebServices;
     }());
     WebServices.Merger = Merger;
 })(WebServices = exports.WebServices || (exports.WebServices = {}));
+//# sourceMappingURL=web_services.js.map

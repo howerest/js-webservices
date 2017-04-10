@@ -1,5 +1,5 @@
 node_modules/
 bower_components/
-typings/
 .DS_Store
 npm-debug.log
+coverage/

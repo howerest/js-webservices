@@ -1,7 +1,11 @@
+/* js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 var Util;
 (function (Util) {
+    /*
+     * Implements environment detection
+     */
     var EnvChecker = (function () {
         function EnvChecker() {
         }
@@ -16,9 +20,16 @@ var Util;
         return EnvChecker;
     }());
     Util.EnvChecker = EnvChecker;
+    /*
+     * Implements basic functionality to clone objects
+     */
     var Cloner = (function () {
         function Cloner() {
         }
+        /*
+         *  Clones an object
+         *  @param {Object} The source object to clone
+         */
         Cloner.obj = function (srcObject) {
             var _this = this;
             return (function (srcObject) {
@@ -42,6 +53,9 @@ var Util;
         return Cloner;
     }());
     Util.Cloner = Cloner;
+    /*
+     *  Deals with underscore <-> camelCase strings
+     */
     var Camel = (function () {
         function Camel() {
         }
@@ -82,3 +96,4 @@ var Util;
     }());
     Util.Camel = Camel;
 })(Util = exports.Util || (exports.Util = {}));
+//# sourceMappingURL=util.js.map

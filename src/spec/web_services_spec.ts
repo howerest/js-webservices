@@ -1,8 +1,4 @@
-/// <reference path="../../typings/jasmine/jasmine.d.ts" />
-/// <reference path="../../typings/jasmine-ajax/jasmine-ajax.d.ts" />
-/// <reference path="../web_services.ts" />
-
-/* js-webservices 0.1.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/* js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { WebServices } from "../web_services";
 

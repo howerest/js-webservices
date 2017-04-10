@@ -1,5 +1,4 @@
-/*! js-webservices 0.1.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
-import { Promise } from "es6-promise";
+/*! js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 export declare module WebServices {
     class XHR {
         constructor();

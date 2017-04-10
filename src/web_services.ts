@@ -1,6 +1,5 @@
-/*! js-webservices 0.1.0 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
-import { Promise } from "es6-promise";
 import { Util } from "./util";
 
 declare let ActiveXObject: (type: string) => void;
