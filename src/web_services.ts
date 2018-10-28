@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Util } from "./util";
 

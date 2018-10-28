@@ -1,8 +1,7 @@
 {
 	"name": "js-webservices",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Implements low-level cross js-environment object oriented javascript API to deal with Http Services. Yes! this is the definitive one.",
-	"bugs": {},
 	"license": "Apache-2.0",
 	"contributors": [
 		{
@@ -18,20 +17,36 @@
 			"email": "davidvalin@howerest.com"
 		}
 	],
-	"main": "built/web_services.js",
-	"dependencies": {},
+	"main": "dist/web_services.js",
+	"typings": "dist/web_services.d.ts",
+	"scripts": {
+		"test": "yarn jest --coverage --collectCoverageFrom='[\"src/*.ts\"]' --verbose",
+		"document": "yarn typedoc --mode file --out dist/doc src/*.ts",
+		"release": "yarn test && rm -rf dist && tsc -p tsconfig.json && yarn document && mv coverage dist"
+	},
 	"devDependencies": {
-		"babel-polyfill": "^6.23.0",
-		"jasmine-ajax": "^3.3.1",
-		"jasmine-core": "^2.5.2",
-		"karma": "^1.3.0",
-		"karma-jasmine": "^1.1.0",
-		"karma-mocha-reporter": "^2.2.1",
-		"karma-phantomjs-launcher": "^1.0.4",
-		"karma-typescript": "^3.0.0",
+		"@types/jest": "^23.3.8",
+		"jest": "^23.6.0",
+		"ts-jest": "^23.10.4",
 		"typescript": "^2.2.2",
 		"utf8": "^2.1.2",
-		"xhr": "^2.3.3"
+		"xhr": "^2.3.3",
+		"xhr-mock": "^2.4.1"
 	},
-	"typings": "built/web_services.d.ts"
+	"jest": {
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js"
+		],
+		"transform": {
+			"^.+\\.(ts|tsx)$": "ts-jest"
+		},
+		"testMatch": [
+			"**/__test__/*_spec.+(ts)"
+		]
+	},
+	"dependencies": {
+		"typedoc": "^0.13.0"
+	}
 }

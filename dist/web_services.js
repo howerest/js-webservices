@@ -1,10 +1,10 @@
-/*! js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
+/*! js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("./util");
 var WebServices;
 (function (WebServices) {
-    var XHR = (function () {
+    var XHR = /** @class */ (function () {
         function XHR() {
             try {
                 return new XMLHttpRequest();
@@ -38,7 +38,7 @@ var WebServices;
     /*!
      * Handles a Http Header
      */
-    var HttpHeader = (function () {
+    var HttpHeader = /** @class */ (function () {
         function HttpHeader(header) {
             this.name = Object.keys(header)[0];
             this.value = header[Object.keys(header)[0]];
@@ -49,7 +49,7 @@ var WebServices;
     /*!
      * Handles a Http Request
      */
-    var HttpRequest = (function () {
+    var HttpRequest = /** @class */ (function () {
         function HttpRequest(httpQuery) {
             this.response = null;
             this.query = httpQuery;
@@ -69,9 +69,9 @@ var WebServices;
             if (Object.keys(this.query.qsParams).length > 0) {
                 endpoint += '?';
                 var i = 0;
-                var keys_1 = Object.keys(this.query.qsParams);
-                for (var _i = 0, keys_2 = keys_1; _i < keys_2.length; _i++) {
-                    var key = keys_2[_i];
+                var keys_2 = Object.keys(this.query.qsParams);
+                for (var _i = 0, keys_1 = keys_2; _i < keys_1.length; _i++) {
+                    var key = keys_1[_i];
                     if (i > 0) {
                         endpoint += '&';
                     }
@@ -120,7 +120,7 @@ var WebServices;
     /*
      * Handles a Http Response
      */
-    var HttpResponse = (function () {
+    var HttpResponse = /** @class */ (function () {
         function HttpResponse(baseHost, headers, data, parseJSON) {
             if (parseJSON === void 0) { parseJSON = true; }
             if (data && parseJSON) {
@@ -156,7 +156,7 @@ var WebServices;
      *
      *    Posts.fetchAll(query)
      */
-    var HttpQuery = (function () {
+    var HttpQuery = /** @class */ (function () {
         function HttpQuery(querySettings) {
             this.httpMethod = 'GET';
             this.qsParams = {};
@@ -222,7 +222,7 @@ var WebServices;
     /*!
      * Merges data
      */
-    var Merger = (function () {
+    var Merger = /** @class */ (function () {
         function Merger() {
         }
         /*

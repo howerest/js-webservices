@@ -1,12 +1,12 @@
-/* js-webservices 0.1.1 | howerest 2016 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 "use strict";
+/* js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 Object.defineProperty(exports, "__esModule", { value: true });
 var Util;
 (function (Util) {
     /*
      * Implements environment detection
      */
-    var EnvChecker = (function () {
+    var EnvChecker = /** @class */ (function () {
         function EnvChecker() {
         }
         EnvChecker.isBrowser = function () {
@@ -23,7 +23,7 @@ var Util;
     /*
      * Implements basic functionality to clone objects
      */
-    var Cloner = (function () {
+    var Cloner = /** @class */ (function () {
         function Cloner() {
         }
         /*
@@ -31,7 +31,7 @@ var Util;
          *  @param {Object} The source object to clone
          */
         Cloner.obj = function (srcObject) {
-            var _this = this;
+            var _this_1 = this;
             return (function (srcObject) {
                 if (srcObject === null || typeof srcObject !== 'object') {
                     return (function (srcObject) { return srcObject; })(srcObject);
@@ -40,7 +40,7 @@ var Util;
                 for (var key in srcObject) {
                     if (srcObject.hasOwnProperty(key)) {
                         if (srcObject[key] instanceof Object) {
-                            newObject[key] = _this.obj(srcObject[key]);
+                            newObject[key] = _this_1.obj(srcObject[key]);
                         }
                         else {
                             newObject[key] = srcObject[key];
@@ -56,7 +56,7 @@ var Util;
     /*
      *  Deals with underscore <-> camelCase strings
      */
-    var Camel = (function () {
+    var Camel = /** @class */ (function () {
         function Camel() {
         }
         Camel.camelize = function (obj) {
