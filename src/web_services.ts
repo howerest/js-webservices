@@ -1,4 +1,4 @@
-/*! js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.3 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 import { Util } from "./util";
 
@@ -72,6 +72,8 @@ export module WebServices {
 
       // Set method & url
       this.client.open(this.query.httpMethod, endpoint);
+      // Use credentials
+      this.client.withCredentials = true;
 
       // Set headers
       for (let i = 0; i < this.query['headers'].length; i++) {
