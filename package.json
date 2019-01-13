@@ -1,6 +1,6 @@
 {
 	"name": "js-webservices",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Implements low-level cross js-environment object oriented javascript API to deal with Http Services. Yes! this is the definitive one.",
 	"license": "Apache-2.0",
 	"contributors": [
