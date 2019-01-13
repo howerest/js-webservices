@@ -1,4 +1,4 @@
-/* js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/* js-webservices 0.1.3 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 
 export module Util {
   declare var global:any;

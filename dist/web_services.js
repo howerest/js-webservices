@@ -1,5 +1,5 @@
 "use strict";
-/*! js-webservices 0.1.2 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
+/*! js-webservices 0.1.3 | howerest 2018 - <davidvalin@howerest.com> | Apache 2.0 Licensed */
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("./util");
 var WebServices;
@@ -81,6 +81,8 @@ var WebServices;
             }
             // Set method & url
             this.client.open(this.query.httpMethod, endpoint);
+            // Use credentials
+            this.client.withCredentials = true;
             // Set headers
             for (var i = 0; i < this.query['headers'].length; i++) {
                 this.client.setRequestHeader(this.query.headers[i].name, this.query.headers[i].value);
